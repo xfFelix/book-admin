@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mybaties.dao.HotListDao">
+    <insert id="insertHotList" useGeneratedKeys="true" parameterType="com.mybatis.mybaties.entity.HotList"
+            keyProperty="id" keyColumn="id">
+        INSERT INTO hot_list (uniquekey, title, date, category, author_name, url, thumbnail_pic_s, thumbnail_pic_s02,
+        thumbnail_pic_s03, create_time, update_time, status, type)
+        values
+        (#{uniquekey},#{title},#{date},#{category},#{authorName},#{url},#{thumbnailPicS},#{thumbnailPicS02},#{thumbnailPicS03},#{createTime},#{updateTime},#{status}, #{type })
+    </insert>
+    <select id="findUnique" resultType="String">
+        select uniquekey from hot_list
+    </select>
+    <select id="findAll" resultType="com.mybatis.mybaties.entity.HotList">
+        select * from hot_list
+    </select>
+</mapper>

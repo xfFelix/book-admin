@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mybaties.dao.BookUrlListDao">
+    <insert id="insertBookUrl" parameterType="com.mybatis.mybaties.entity.BookUrlList">
+        INSERT INTO book_url_list (id, url, name, create_time, update_time, status)
+        values (#{id},#{url},#{name},#{createTime},#{updateTime},#{status})
+    </insert>
+    <select id="findAll" resultType="com.mybatis.mybaties.entity.BookUrlList">
+        select * from book_url_list
+    </select>
+</mapper>

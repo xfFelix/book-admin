@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mybaties.dao.UserDao">
+    <insert id="insertUser" parameterType="com.mybatis.mybaties.entity.User">
+        INSERT INTO user (id, name, password, create_time, update_time, status) VALUES (#{id},#{name},#{password},#{createTime},#{updateTime},#{status})
+    </insert>
+    <select id="findAll" resultType="com.mybatis.mybaties.entity.User">
+        select * from user
+    </select>
+    <select id="findById" resultType="com.mybatis.mybaties.entity.User">
+        select id,name,avatar,introduction from user where id=#{id}
+    </select>
+    <update id="updateById" parameterType="com.mybatis.mybaties.entity.User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id != null">name=#{name},</if>
+            <if test="id != null">password=#{password},</if>
+            <if test="id != null">introduction=#{introduction},</if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

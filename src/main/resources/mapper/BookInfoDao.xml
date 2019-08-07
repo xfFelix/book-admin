@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mybaties.dao.BookInfoDao">
+
+    <insert id="addBookInfo" parameterType="com.mybatis.mybaties.entity.BookInfo" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into book_info_detail
+          (name, num, count, title, content, font_size, create_time, update_time, status, parent_id)
+        values
+          (#{name},#{num},#{count},#{title},#{content},#{fontSize},#{createTime},#{updateTime},#{status},#{parentId})
+    </insert>
+    
+    <select id="findMaxNum" resultType="Integer" parameterType="Integer">
+        select max(num) as num from book_info_detail where parent_id=#{id}
+    </select>
+
+    <delete id="deleteBookInfo" parameterType="integer">
+        delete from book_info_detail where parent_id = #{id}
+    </delete>
+    
+    <select id="findByParentId" resultType="map" parameterType="integer">
+        select id, title from book_info_detail where parent_id = #{parentId}
+    </select>
+
+    <!--<resultMap id="bookdetail" type="com.mybatis.mybaties.entity.BookInfo">-->
+        <!--<id column="id" property="id"/>-->
+        <!--<result column="name" property="name"/>-->
+        <!--<result column="num" property="num"/>-->
+        <!--<result column="count" property="count"/>-->
+        <!--<result column="title" property="title"/>-->
+        <!--<result column="content" property="content"/>-->
+        <!--<result column="font_size" property="fontSize"/>-->
+        <!--<result column="create_time" property="createTime"/>-->
+        <!--<result column="update_time" property="updateTime"/>-->
+        <!--<result column="status" property="status"/>-->
+        <!--<result column="parent_id" property="parentId"/>-->
+    <!--</resultMap>-->
+
+</mapper>
